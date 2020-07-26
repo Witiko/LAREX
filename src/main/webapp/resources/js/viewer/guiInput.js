@@ -466,4 +466,6 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 	})
 
 	$('.showShortcuts').click(() => _controller.toggleShortcutModal());
+
+	$('.setSessionUser').click(() => _controller.setMetadataUser());
 }

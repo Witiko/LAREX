@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -61,8 +63,8 @@ public class PageXMLWriter {
 	 * @throws UnsupportedFormatVersionException
 	 * @throws InvalidIdException
 	 */
-	public static Document getPageXML(PageAnnotations result, String pageXMLVersion)
-			throws UnsupportedFormatVersionException  {
+	public static Document getPageXML(PageAnnotations result, String pageXMLVersion, Map<String, String> metadataMap)
+			throws UnsupportedFormatVersionException, ParseException {
 
 		// Start PAGE xml
 		XmlFormatVersion version = new XmlFormatVersion(pageXMLVersion);
@@ -72,8 +74,17 @@ public class PageXMLWriter {
 
 		// Create page and meta data
 		MetaData metadata = page.getMetaData();
-		metadata.setCreationTime(new Date());
-		// metadata ChangedTime
+		metadata.setCreator(metadataMap.get("creator"));
+		metadata.setComments(metadataMap.get("comments"));
+		if(metadataMap.get("creation_time") != null){
+			String pattern = "yyyy-MM-dd'T'HH:mm:ss";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			Date date = simpleDateFormat.parse(metadataMap.get("creation_time"));
+			metadata.setCreationTime(date);
+		}else{
+			metadata.setCreationTime(new Date());
+		}
+		metadata.setLastModifiedTime(new Date());
 
 		// Create page layout
 		PageLayout layout = page.getLayout();

@@ -894,6 +894,15 @@ function GUI(canvas, viewer, colors, accessible_modes) {
 	this.getPageXMLVersion = function () {
 		return $('.pageXMLVersion').first().text();
 	}
+	this.getMetadata = function () {
+		let metadata = {};
+		metadata["creator"] = $("#creator.metadata").val();
+		metadata["comments"] = $("#comments.metadata").val();
+		metadata["creation_time"] = $("#creation-time.metadata").val();
+		metadata["last_modification_time"] = $("#last-modification-time.metadata").val();
+
+		return metadata;
+	}
 	this.setSaveSettingsInProgress = function (isInProgress) {
 		if (isInProgress) {
 			$('.saveSettingsXML').find('.progress').removeClass('hide');

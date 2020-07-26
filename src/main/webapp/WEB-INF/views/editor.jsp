@@ -79,6 +79,7 @@
 	</b:head>
 	<t:keyboardShortcutModal/>
 	<t:batchSegmentModal/>
+	<t:metadataModal/>
 	<body>
 		<t:virtualKeyboardPresetModal/>
 		<div id="menu" class="grey lighten-4">

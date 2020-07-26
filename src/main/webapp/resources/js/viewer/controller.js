@@ -373,12 +373,20 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		_segmentedPages.push(_currentPage);
 	}
 
+	this._setMetadata = function(metadata){
+		if(metadata.creator) $("#creator.metadata").val(metadata.creator);
+		if(metadata.comments) $("#comments.metadata").val(metadata.comments);
+		if(metadata.creation_time) $("#creation-time.metadata").val(metadata.creation_time);
+		if(metadata.last_modification_time) $("#last-modification-time").val(metadata.last_modification_time);
+	}
+
 	this._setPage = function(pageid, result){
 			_pastId = null;
 
 			const missingRegions = [];
 
 			_gui.highlightLoadedPage(pageid, false);
+			this._setMetadata(result.metadata);
 
 			function preparePage(_controller){
 				_segmentation[pageid] = result;
@@ -523,7 +531,7 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 	this.exportPageXML = function (_page = _currentPage) {
 		_gui.setExportingInProgress(true);
 
-		_communicator.exportSegmentation(_segmentation[_page], _book.id, _gui.getPageXMLVersion()).done((data) => {
+		_communicator.exportSegmentation(_segmentation[_page], _book.id, _gui.getPageXMLVersion(), _gui.getMetadata()).done((data) => {
 			// Set export finished
 			_savedPages.push(_page);
 			_gui.setExportingInProgress(false);
@@ -1898,6 +1906,16 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		return _settings[_currentPage];
 	}
 
+	this.toggleMetadataModal = function(){
+		const $metadata_modal = $("#metadataModal");
+
+		if($metadata_modal.hasClass("open")){
+			$metadata_modal.modal("close");
+		}else{
+			$metadata_modal.modal("open");
+		}
+	}
+
 	this.openBatchSegmentModal = function(){
 		$("#batchSegmentModal").modal("open");
 	}
@@ -1917,5 +1935,14 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 			})
 			$shortcutModal.modal("open");
 		}
+	}
+
+	this.setMetadataUser = function(){
+		localStorage.setItem('metadata_user', $("#creator.metadata").val());
+	}
+
+	this.getMetadataUser = function(){
+		return localStorage.getItem('metadata_user');
+
 	}
 }

@@ -192,7 +192,7 @@ public class FileController {
 	@RequestMapping(value = "file/export/annotations", method = RequestMethod.POST, headers = "Accept=*/*", produces = "application/json", consumes = "application/json")
 	public @ResponseBody ResponseEntity<byte[]> exportXML(@RequestBody ExportRequest request) {
 		try {
-			final Document pageXML = PageXMLWriter.getPageXML(request.getSegmentation(), request.getVersion());
+			final Document pageXML = PageXMLWriter.getPageXML(request.getSegmentation(), request.getVersion(), request.getMetadata());
 
 			final String xmlName =  request.getSegmentation().getName() + ".xml";
 

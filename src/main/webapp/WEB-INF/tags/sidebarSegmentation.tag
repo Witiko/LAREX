@@ -182,9 +182,14 @@
 		<li><a class="pageXMLVersionSelect" data-version="2010-03-19">2010-03-19</a></li>
 	</ul>
 	<form action="#">
-	<div class="col s12 waves-effect waves-light btn tooltipped" onclick="$('#upload-segmentation-input').click()" data-position="left" data-delay="50" data-tooltip="Supports PageXML v2010-03-19 and v2013-07-15">
-		Load Result
-		<i class="material-icons right">file_upload</i></div>
+		<div class="col s12 waves-effect waves-light btn tooltipped" onclick="$('#upload-segmentation-input').click()" data-position="left" data-delay="50" data-tooltip="Supports PageXML v2010-03-19 and v2013-07-15">
+			Load Result
+			<i class="material-icons right">file_upload</i>
+		</div>
 		<input id="upload-segmentation-input" class="uploadSegmentation hide" type="file">
 	</form>
+	<div class="col s12 divider"></div>
+	<a class="col s12 waves-effect waves-light btn doBatch tooltipped" href="#metadataModal" data-position="left" data-delay="50" data-tooltip="Open metadata modal (Shortcut: CTRL+M)">
+		Metadata
+	</a>
 </div>

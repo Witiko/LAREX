@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.uniwue.web.model.PageAnnotations;
 
+import java.util.Map;
+
 /**
  * Communication object for the gui to request a export of a segmentation
  * 
@@ -17,13 +19,17 @@ public class ExportRequest {
 	private PageAnnotations segmentation;
 	@JsonProperty("version")
 	private String version;
+	@JsonProperty("metadata")
+	private Map<String, String> metadata;
 
 	@JsonCreator
 	public ExportRequest(@JsonProperty("bookid") Integer bookid,
-			@JsonProperty("segmentation") PageAnnotations segmentation, @JsonProperty("version") String version) {
+			@JsonProperty("segmentation") PageAnnotations segmentation, @JsonProperty("version") String version,
+						 @JsonProperty("metadata") Map<String, String> metadata) {
 		this.bookid = bookid;
 		this.segmentation = segmentation;
 		this.version = version;
+		this.metadata = metadata;
 	}
 
 	public Integer getBookid() {
@@ -37,4 +43,6 @@ public class ExportRequest {
 	public String getVersion() {
 		return version;
 	}
+
+	public Map<String, String> getMetadata() { return metadata; }
 }

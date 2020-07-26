@@ -35,10 +35,13 @@ public class PageAnnotations {
 	private final List<String> readingOrder;
 	@JsonProperty("status")
 	private final SegmentationStatus status;
+	@JsonProperty("metadata")
+	private final Map<String, String> metadata;
 
 	@JsonCreator
 	public PageAnnotations(@JsonProperty("name") String name, @JsonProperty("width") int width,
 			@JsonProperty("height") int height,
+			@JsonProperty("metadata") Map<String, String> metadata,
 			@JsonProperty("segments") Map<String, Region> segments, @JsonProperty("status") SegmentationStatus status,
 			@JsonProperty("readingOrder") List<String> readingOrder) {
 		this.segments = segments;
@@ -47,12 +50,14 @@ public class PageAnnotations {
 		this.name = name;
 		this.width = width;
 		this.height = height;
+		this.metadata = metadata;
 		checkNameValidity(name);
 	}
 
 	public PageAnnotations(String name, int width, int height, int pageNr, 
 			Collection<RegionSegment> regions,  SegmentationStatus status) {
 		Map<String, Region> segments = new HashMap<String, Region>();
+		Map<String, String> metadata = new HashMap<>();
 
 		for (RegionSegment region : regions) {
 			LinkedList<Point> points = new LinkedList<Point>();
@@ -70,6 +75,7 @@ public class PageAnnotations {
 		this.name = name;
 		this.width = width;
 		this.height = height;
+		this.metadata = metadata;
 		checkNameValidity(name);
 	}
 
@@ -92,6 +98,8 @@ public class PageAnnotations {
 	public String getName() {
 		return name;
 	}
+
+	public Map<String, String> getMetadata() {return metadata;}
 
 	public int getHeight() {
 		return height;

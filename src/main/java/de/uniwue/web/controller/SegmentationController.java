@@ -1,10 +1,7 @@
 package de.uniwue.web.controller;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -84,8 +81,8 @@ public class SegmentationController {
 		for(int page: batchSegmentationRequest.getPages()){
 			PageAnnotations result = LarexFacade.segmentPage(batchSegmentationRequest.getSettings(), page, fileManager, database);
 			if(save){
-				try {
-					final Document pageXML = PageXMLWriter.getPageXML(result, batchSegmentationRequest.getVersion());
+				try { //TODO: Implement real metadata usage
+					final Document pageXML = PageXMLWriter.getPageXML(result, batchSegmentationRequest.getVersion(), new HashMap<>());
 
 					final String xmlName =  result.getName() + ".xml";
 

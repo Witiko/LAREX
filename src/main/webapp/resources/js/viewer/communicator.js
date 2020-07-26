@@ -100,8 +100,8 @@ class Communicator {
 	}
 
 	// Files
-	exportSegmentation(segmentation, bookID, pageXMLVersion) {
-		return this.request("file/export/annotations", {bookid:bookID,segmentation:segmentation,version:pageXMLVersion}, DataType.JSON, DataType.BYTE);
+	exportSegmentation(segmentation, bookID, pageXMLVersion, metadata) {
+		return this.request("file/export/annotations", {bookid:bookID,segmentation:segmentation,version:pageXMLVersion, metadata:metadata}, DataType.JSON, DataType.BYTE);
 	}
 
 	exportSettings(settings) {

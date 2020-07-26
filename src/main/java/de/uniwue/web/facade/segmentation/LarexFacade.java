@@ -72,7 +72,8 @@ public class LarexFacade {
 					page.getId(), segmentationResult, SegmentationStatus.SUCCESS);
 		} else {
 			segmentation = new PageAnnotations(page.getName(), page.getWidth(), page.getHeight(),
-					new HashMap<String, Region>(), SegmentationStatus.MISSINGFILE, new ArrayList<String>());
+					new HashMap<String, String>(), new HashMap<String, Region>(), SegmentationStatus.MISSINGFILE,
+					new ArrayList<String>());
 		}
 		return segmentation;
 	}

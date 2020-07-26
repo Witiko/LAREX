@@ -75,6 +75,11 @@ function KeyInput(_navigationController, _controller, _gui, _textViewer, _select
 							validKey = true;
 						}
 						break;
+					case "m":
+						if(event.ctrlKey){
+							_controller.toggleMetadataModal();
+						}
+						break;
 					case "y":
 						if (event.ctrlKey) {
 							_controller.redo();
@@ -142,8 +147,12 @@ function KeyInput(_navigationController, _controller, _gui, _textViewer, _select
 						}
 						break;
 					case "m":
-						_controller.move();
-						validKey = true;
+						if(event.ctrlKey){
+							_controller.toggleMetadataModal();
+						}else{
+							_controller.move();
+							validKey = true;
+						}
 						break;
 					case "+":
 						_navigationController.zoomIn(0.1);
