@@ -30,6 +30,7 @@ import org.primaresearch.dla.page.layout.physical.text.LowLevelTextObject;
 import org.primaresearch.dla.page.layout.physical.text.impl.TextContentVariants.TextContentVariant;
 import org.primaresearch.dla.page.layout.physical.text.impl.TextLine;
 import org.primaresearch.dla.page.layout.physical.text.impl.TextRegion;
+import org.primaresearch.dla.page.metadata.MetaData;
 import org.primaresearch.io.UnsupportedFormatVersionException;
 import org.primaresearch.maths.geometry.Polygon;
 import org.primaresearch.shared.variable.IntegerValue;
@@ -81,6 +82,14 @@ public class PageXMLReader {
 
 		// Read PAGE xml into Segmentation Result
 		if (page != null) {
+			// Read metadata
+			MetaData metadata = page.getMetaData();
+			Map<String, String> metadataMap = new HashMap<>();
+			metadataMap.put("creator", metadata.getCreator());
+			metadataMap.put("comments", metadata.getComments());
+			metadataMap.put("creation_time", metadata.getFormattedCreationTime());
+			metadataMap.put("last_modification_time", metadata.getFormattedLastModificationTime());
+
 			Map<String, de.uniwue.web.model.Region> resRegions = new HashMap<>();
 			// Read regions
 			for (Region region : page.getLayout().getRegionsSorted()) {
@@ -189,7 +198,7 @@ public class PageXMLReader {
 			final String pageName = imageName.lastIndexOf(".") > 0 ? 
 					imageName.substring(0, imageName.lastIndexOf(".")) : imageName;
 			
-			return new PageAnnotations(pageName, width, height, resRegions,
+			return new PageAnnotations(pageName, width, height, metadataMap, resRegions,
 					SegmentationStatus.LOADED, newReadingOrder);
 		}
 
