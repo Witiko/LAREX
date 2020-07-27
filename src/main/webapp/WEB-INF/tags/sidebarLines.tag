@@ -53,6 +53,7 @@
 		<i class="material-icons right">file_upload</i></div>
 		<input id="upload-segmentation-input" class="uploadSegmentation hide" type="file">
 	</form>
-	
-	
+	<a class="col s12 waves-effect waves-light btn doBatch tooltipped" href="#metadataModal" data-position="left" data-delay="50" data-tooltip="Open metadata modal (Shortcut: CTRL+M)">
+		Metadata
+	</a>
 </div>
