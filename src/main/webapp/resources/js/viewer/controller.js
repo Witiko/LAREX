@@ -1,4 +1,4 @@
-var Mode = {SEGMENT:'segment',EDIT:'edit',LINES:'lines',TEXT:'text'}
+var Mode = {SEGMENT:'segment',EDIT:'edit',LINES:'lines',TEXT:'text',MODAL:'text'}
 var PageStatus = {TODO:'statusTodo',SESSIONSAVED:'statusSession',SERVERSAVED:'statusServer',UNSAVED:'statusUnsaved'}
 var ElementType = {SEGMENT:'segment',AREA:'area',TEXTLINE:'textline',CUT:'cut',CONTOUR:'contour',SUBTRACT:"subtract"}
 
@@ -20,6 +20,7 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 	let _savedPages = [];
 	let _book;
 	let _segmentation = {};
+	let _metadata = {}
 	let _settings;
 	let _contours = {};
 	let _presentRegions = [];
@@ -195,6 +196,8 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 				pages.forEach(page => { _gui.addPageStatus(page, PageStatus.SERVERSAVED)});
 			})
 		} else {
+			_metadata[_currentPage] ? this._fillMetadataInput(_metadata[_currentPage]): this._clearMetadataInput();
+
 			const pageSegments = _segmentation[_currentPage] ? _segmentation[_currentPage].segments : null;
 
 			this.textlineRegister = {};
@@ -373,11 +376,20 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		_segmentedPages.push(_currentPage);
 	}
 
-	this._setMetadata = function(metadata){
-		if(metadata.creator) $("#creator.metadata").val(metadata.creator);
-		if(metadata.comments) $("#comments.metadata").val(metadata.comments);
-		if(metadata.creation_time) $("#creation-time.metadata").val(metadata.creation_time);
-		if(metadata.last_modification_time) $("#last-modification-time").val(metadata.last_modification_time);
+	this._fillMetadataInput = function(metadata){
+		$("#creator.metadata").val(metadata.creator);
+		$("#comments.metadata").val(metadata.comments);
+		$("#creation-time.metadata").val(metadata.creation_time);
+		$("#last-modification-time").val(metadata.last_modification_time);
+	}
+
+	this._clearMetadataInput = function() {
+		$("input.metadata").val("");
+	}
+
+	this._setMetadata = function(metadata, pageid){
+		_metadata[pageid] = metadata;
+		this._fillMetadataInput(metadata);
 	}
 
 	this._setPage = function(pageid, result){
@@ -386,7 +398,7 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 			const missingRegions = [];
 
 			_gui.highlightLoadedPage(pageid, false);
-			this._setMetadata(result.metadata);
+			this._setMetadata(result.metadata, pageid);
 
 			function preparePage(_controller){
 				_segmentation[pageid] = result;
