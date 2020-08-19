@@ -7,25 +7,35 @@
         <h4>Roi Selection</h4>
         <p>Select pages on which the RoI should apply</p>
         <ul class="collapsible" data-collapsible="expandable">
-            <%--            <li>--%>
-            <%--                <div class="collapsible-header active"><i class="material-icons">settings</i>Options</div>--%>
-            <%--                <div class="collapsible-body collapsible-body-batch">--%>
-            <%--                    <input type="checkbox" class="" id="batchSaveSegmentation"/>--%>
-            <%--                    <label for="batchSaveSegmentation">--%>
-            <%--                        Autosave pages--%>
-            <%--                    </label>--%>
-            <%--                </div>--%>
-            <%--            </li>--%>
+             <li>
+                 <div class="collapsible-header active"><i class="material-icons">settings</i>Options</div>
+                    <div class="collapsible-body collapsible-body-batch">
+                        <ul id="roi-settings">
+                            <li class="select-all">
+                                <input type="checkbox" class="" checked="checked" id="selectAllBatch"/>
+                                <label for="selectRecto">
+                                    Select all
+                                </label>
+                            </li>
+                            <li class="select-recto">
+                                <input type="checkbox" class="" id="selectRecto"/>
+                                <label for="selectAllBatch">
+                                    Recto
+                                </label>
+                            </li>
+                            <li class="select-verso">
+                                <input type="checkbox" class="" id="selectVerso"/>
+                                <label for="selectVerso">
+                                    Verso
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+            </li>
             <li>
-                <div class="collapsible-header active"><i class="material-icons">library_books</i>Pages</div>
+                <div class="collapsible-header"><i class="material-icons">library_books</i>Pages</div>
                 <div class="collapsible-body collapsible-body-batch">
                     <ul id="batchImageList">
-                        <li class="select-all">
-                            <input type="checkbox" class="" id="selectAllBatch"/>
-                            <label for="selectAllBatch">
-                                Select all
-                            </label>
-                        </li>
                         <c:forEach items="${book.getPages()}" var="bookpage">
                             <li>
                                 <input type="checkbox" id="${bookpage.getName()}" data-page="${bookpage.getId()}"
@@ -47,20 +57,5 @@
            href="#roiConfirmationModal" data-position="left" data-delay="50"
            data-tooltip="Apply RoI selection">Next</a>
     </div>
+    <!-- TODO: Rectangle Drawing after modal -->
 </div>
-<%--<div id="batchSegmentConfirmationModal" class="modal">--%>
-<%--    <div class="modal-content">--%>
-<%--        <div class="card-panel center red" id="batchWarning">--%>
-<%--			<span class="white-text">Running the batch segmentation will override the segmentation results for all selected pages.--%>
-<%--			</span>--%>
-<%--        </div>--%>
-<%--        <div class="progress" id="batch-segmentation-progress">--%>
-<%--            <div class="indeterminate"></div>--%>
-<%--        </div>--%>
-<%--        <div class="center">--%>
-<%--            <a class="col s12 waves-effect waves-light btn doBatchSegment tooltipped" data-position="left"--%>
-<%--               data-delay="50" data-tooltip="Run the batch segmentation">Run<i class="material-icons right">send</i></a>--%>
-<%--            <a href="#!" class="modal-close btn waves-effect waves-light red">Abort</a>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>

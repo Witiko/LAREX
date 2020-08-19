@@ -89,8 +89,8 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 	});
 	$('.createRegionAreaRectangle').click(() => _controller.createRectangle('area'));
 	$('.setRegionOfInterest').on('click', function () {
+		_controller.openRoiModal();
 		_controller.createRectangle('roi');
-			_controller.openRoiModal();
 	});
 
 	$('.createIgnore').click(() => _controller.createRectangle('ignore'));
