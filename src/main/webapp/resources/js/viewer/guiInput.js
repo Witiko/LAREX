@@ -87,11 +87,6 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 			_controller.changeImageCombine(doCombine);
 		}
 	});
-	$('.createRegionAreaRectangle').click(() => _controller.createRectangle('area'));
-	$('.setRegionOfInterest').on('click', function () {
-		_controller.openRoiModal();
-		_controller.createRectangle('roi');
-	});
 
 	$('.createIgnore').click(() => _controller.createRectangle('ignore'));
 	$('.createRegionAreaBorder').click(() => _controller.createRegionAreaBorder());
@@ -469,4 +464,28 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 	})
 
 	$('.showShortcuts').click(() => _controller.toggleShortcutModal());
+	//Region of Interest area
+	$('.setRegionOfInterest').click(() => _controller.openRoiModal());
+	$(".confirmRoi").click(
+		function() {
+			console.log("clicked...waiting...");
+
+			setTimeout(
+				function() {
+					//alert("Called after delay.");
+					_controller.createRectangle('roi');
+				},
+				300);
+		});
+	$("#selectAllRoI").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', this.checked);
+	});
+	$("#selectRecto").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', '');
+		$(`.roiPageCheck:checkbox:odd`).prop("checked", this.checked);
+	});
+	$("#selectVerso").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', '');
+		$('.roiPageCheck:checkbox:even').prop('checked', this.checked);
+	});
 }

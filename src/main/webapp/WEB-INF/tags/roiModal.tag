@@ -7,39 +7,39 @@
         <h4>Roi Selection</h4>
         <p>Select pages on which the RoI should apply</p>
         <ul class="collapsible" data-collapsible="expandable">
-             <li>
-                 <div class="collapsible-header active"><i class="material-icons">settings</i>Options</div>
-                    <div class="collapsible-body collapsible-body-batch">
-                        <ul id="roi-settings">
-                            <li class="select-all">
-                                <input type="checkbox" class="" checked="checked" id="selectAllBatch"/>
-                                <label for="selectRecto">
-                                    Select all
-                                </label>
-                            </li>
-                            <li class="select-recto">
-                                <input type="checkbox" class="" id="selectRecto"/>
-                                <label for="selectAllBatch">
-                                    Recto
-                                </label>
-                            </li>
-                            <li class="select-verso">
-                                <input type="checkbox" class="" id="selectVerso"/>
-                                <label for="selectVerso">
-                                    Verso
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
+            <li>
+                <div class="collapsible-header active"><i class="material-icons">settings</i>Options</div>
+                <div class="collapsible-body collapsible-body-batch">
+                    <ul id="roi-settings">
+                        <li class="select-all">
+                            <input type="radio" name="groupRoI" class="" checked="checked" id="selectAllRoI"/>
+                            <label for="selectAllRoI">
+                                Select all
+                            </label>
+                        </li>
+                        <li class="select-verso">
+                            <input type="radio" name="groupRoI" class="" id="selectVerso"/>
+                            <label for="selectVerso">
+                                Verso
+                            </label>
+                        </li>
+                        <li class="select-recto">
+                            <input type="radio" name="groupRoI" class="" id="selectRecto"/>
+                            <label for="selectRecto">
+                                Recto
+                            </label>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li>
-                <div class="collapsible-header"><i class="material-icons">library_books</i>Pages</div>
+                <div class="collapsible-header active"><i class="material-icons">library_books</i>Pages</div>
                 <div class="collapsible-body collapsible-body-batch">
                     <ul id="batchImageList">
                         <c:forEach items="${book.getPages()}" var="bookpage">
                             <li>
                                 <input type="checkbox" id="${bookpage.getName()}" data-page="${bookpage.getId()}"
-                                       class="batchPageCheck"/>
+                                       class="roiPageCheck"/>
                                 <label for="${bookpage.getName()}">
                                         ${bookpage.getName()}
                                 </label>
@@ -52,10 +52,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-        <a class="col s12 waves-effect waves-light btn confirmBatchSegment tooltipped"
-           href="#roiConfirmationModal" data-position="left" data-delay="50"
-           data-tooltip="Apply RoI selection">Next</a>
+        <a href="#Roi" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        <span class="col s12 waves-effect waves-light btn confirmRoi tooltipped modal-close"
+              data-tooltip="Apply RoI selection">Next</span>
     </div>
-    <!-- TODO: Rectangle Drawing after modal -->
 </div>
