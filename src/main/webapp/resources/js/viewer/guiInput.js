@@ -488,4 +488,5 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 		$('.roiPageCheck:checkbox').prop('checked', '');
 		$('.roiPageCheck:checkbox:even').prop('checked', this.checked);
 	});
+	$('.createLocalIgnore').click(() => _controller.createRectangle('localIgnore'));
 }

@@ -681,6 +681,9 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 			case 'roi':
 				_gui.selectToolBarButton('roi', true);
 				break;
+			case 'localIgnore':
+				_gui.selectToolBarButton('localIgnore', true);
+				break;
 			case 'subtract':
 				_gui.selectToolBarButton('subtractRectangle', true);
 		}
@@ -1043,6 +1046,11 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		this.endEditing();
 		_editor.startCreateBorder(ElementType.AREA);
 		_gui.selectToolBarButton('regionBorder', true);
+	}
+
+	this.callbackNewLocalArea = function (regionpoints) {
+		const newID = "c" + _newPolygonCounter;
+		_newPolygonCounter++;
 	}
 
 	this.callbackNewArea = function (regionpoints, regiontype) {
@@ -1902,9 +1910,10 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		$("#batchSegmentModal").modal("open");
 	}
 
+
 	this.toggleShortcutModal = function(){
 		const $shortcutModal = $("#kb-shortcut-modal");
-		const $tab = $("#kb-shortcut-modal-tabs")
+		const $tab = $("#kb-shortcut-modal-tabs");
 		const _mode = this.getMode();
 
 		if($shortcutModal.hasClass("open")){

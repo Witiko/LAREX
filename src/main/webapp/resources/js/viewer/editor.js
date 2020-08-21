@@ -163,6 +163,9 @@ class Editor extends Viewer {
 						case 'ignore':
 							this._controller.callbackNewArea(this._convertCanvasPolygonToGlobal(rectangle, true), 'ignore');
 							break;
+						case 'localIgnore':
+							this._controller.callbackNewArea(this._convertCanvasPolygonToGlobal(rectangle, true), 'localignore');
+							break;
 						case 'subtract':
 							if(this._controller.getMode() === Mode.LINES){
 								this._controller.subtractTextLines(this._convertCanvasPolygonToGlobal(rectangle, false));
