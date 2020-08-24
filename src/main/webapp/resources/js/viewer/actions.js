@@ -187,9 +187,9 @@ function ActionChangeTypeSegment(id, newType, viewer, controller, segmentation, 
 	}
 }
 
-function ActionAddRegionArea(id, points, type, editor, settings) {
+function ActionAddRegionArea(id, points, type, editor, settings, mapping=null) {
 	let _isExecuted = false;
-	const _area = { id: id, points: points, type: type, isRelative: true };
+	const _area = { id: id, points: points, type: type, isRelative: true, mapping: mapping };
 
 	this.execute = function () {
 		if (!_isExecuted) {

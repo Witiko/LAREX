@@ -1067,8 +1067,13 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		}
 
 		if(regionpoints && this._countUniquePoints(regionpoints) > 3){
+			let mapping = null;
+			if (type === 'localignore'){
+				mapping = _currentPage;
+				type = "ignore"
+			}
 			const actionAdd = new ActionAddRegionArea(newID, regionpoints, type,
-				_editor, _settings);
+					_editor, _settings, mapping);
 
 			_actionController.addAndExecuteAction(actionAdd, _currentPage);
 			if (!regiontype) {
