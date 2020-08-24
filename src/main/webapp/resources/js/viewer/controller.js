@@ -1048,10 +1048,6 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		_gui.selectToolBarButton('regionBorder', true);
 	}
 
-	this.callbackNewLocalArea = function (regionpoints) {
-		const newID = "c" + _newPolygonCounter;
-		_newPolygonCounter++;
-	}
 
 	this.callbackNewArea = function (regionpoints, regiontype) {
 		const newID = "c" + _newPolygonCounter;
@@ -1069,8 +1065,8 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 		if(regionpoints && this._countUniquePoints(regionpoints) > 3){
 			let mapping = null;
 			if (type === 'localignore'){
-				mapping = _currentPage;
-				type = "ignore"
+				mapping = _editor._imageID;
+				type = "ignore";
 			}
 			const actionAdd = new ActionAddRegionArea(newID, regionpoints, type,
 					_editor, _settings, mapping);

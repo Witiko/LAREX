@@ -206,6 +206,12 @@ class Viewer {
 
 		// Create area canvas
 		this._createEmptyOverlay("areas");
+		this._overlays["areas"].forEach(element => {
+			if (element.mapping === this._imageID){
+				
+			}
+		)}
+	}
 		this._imageCanvas.addChild(this._overlays["areas"]);
 
 		// Create line canvas
@@ -354,8 +360,8 @@ class Viewer {
 		}
 	}
 
-	addArea(area) {
-		this.drawPolygon(area, true, false, this._overlays["areas"]);
+	addArea(area, mapping=null){
+		this.drawPolygon(area, true, false, this._overlays["areas"], mapping=null);
 	}
 
 	addTextLine(textline){
@@ -521,7 +527,7 @@ class Viewer {
 	}
 
 	//Protected Functions (are public but should bee seen as protected)
-	drawPolygon(segment, doFill, isFixed, canvas = this._overlays["segments"]) {
+	drawPolygon(segment, doFill, isFixed, canvas = this._overlays["segments"], mapping=null) {
 		//Construct polygon from segment
 		const polygon = new paper.Path();
 		polygon.elementID = segment.id;
@@ -559,6 +565,7 @@ class Viewer {
 		}
 
 		//Add to canvas
+		polygon.data.mapping = mapping;
 		canvas.addChild(polygon);
 		this._polygons[segment.id] = polygon;
 

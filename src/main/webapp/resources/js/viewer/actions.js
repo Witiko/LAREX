@@ -195,7 +195,7 @@ function ActionAddRegionArea(id, points, type, editor, settings, mapping=null) {
 		if (!_isExecuted) {
 			_isExecuted = true;
 			settings.regions[type].areas[_area.id] = _area;
-			editor.addArea(_area);
+			editor.addArea(_area, mapping);
 
 			console.log('Do - Add Region Area: {id:"' + _area.id + '",[..],type:"' + _area.type + '"}');
 		}
