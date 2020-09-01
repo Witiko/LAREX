@@ -1918,4 +1918,7 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 			$shortcutModal.modal("open");
 		}
 	}
+	this.openRoiModal = function () {
+		$("#roiModal").modal("open");
+	}
 }
