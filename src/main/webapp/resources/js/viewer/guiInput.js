@@ -466,4 +466,27 @@ function GuiInput(navigationController, controller, gui, textViewer, selector, c
 	})
 
 	$('.showShortcuts').click(() => _controller.toggleShortcutModal());
+	//Region of Interest area
+	$('.setRegionOfInterest').click(() => _controller.openRoiModal());
+	$(".confirmRoi").click(
+		function() {
+			console.log("clicked...waiting...");
+
+			setTimeout(
+				function() {
+					_controller.createRectangle('roi');
+				},
+				300);
+		});
+	$("#selectAllRoI").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', this.checked);
+	});
+	$("#selectRecto").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', '');
+		$(`.roiPageCheck:checkbox:odd`).prop("checked", this.checked);
+	});
+	$("#selectVerso").click(function () {
+		$('.roiPageCheck:checkbox').prop('checked', '');
+		$('.roiPageCheck:checkbox:even').prop('checked', this.checked);
+	});
 }
