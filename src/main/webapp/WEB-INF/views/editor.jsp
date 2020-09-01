@@ -101,7 +101,9 @@
 							<t:menuIcon jsClass="setRegionOfInterest" icon="video_label"
 								tooltip="Set the Region of Interest (RoI)">RoI</t:menuIcon>
 							<t:menuIcon jsClass="createIgnore" icon="layers_clear"
-								tooltip="Create a ignore rectangle">Ignore</t:menuIcon> 
+								tooltip="Create a ignore rectangle">Ignore</t:menuIcon>
+							<t:menuIcon jsClass="createLocalIgnore" icon="crop_5_4"
+								tooltip="Create a local ignore rectangle">Local Ignore</t:menuIcon>
 						</t:menuIconCategory>
 						<t:menuIconCategory name="Area" jsClass="menu-region">
 							<t:menuIcon jsClass="createRegionAreaRectangle" icon="crop_5_4"

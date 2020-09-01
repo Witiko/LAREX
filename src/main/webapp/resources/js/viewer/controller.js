@@ -681,6 +681,9 @@ function Controller(bookID, accessible_modes, canvasID, regionColors, colors, gl
 			case 'roi':
 				_gui.selectToolBarButton('roi', true);
 				break;
+			case 'localIgnore':
+				_gui.selectToolBarButton('localIgnore', true);
+				break;
 			case 'subtract':
 				_gui.selectToolBarButton('subtractRectangle', true);
 		}
