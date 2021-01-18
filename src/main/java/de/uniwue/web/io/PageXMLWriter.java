@@ -175,20 +175,14 @@ public class PageXMLWriter {
 	 * @param fileName
 	 * @param outputFolder
 	 */
-	public static void saveDocument(Document document, String fileName, String outputFolder) {
+	public static void saveDocument(Document document, String filePath) {
 		try {
 			// write content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
 
-			if (!outputFolder.endsWith(File.separator)) 
-				outputFolder += File.separator;
-
-			final String outputPath = outputFolder + fileName;
-			
-
-			FileOutputStream output = new FileOutputStream(new File(outputPath));
+			FileOutputStream output = new FileOutputStream(new File(filePath));
 			StreamResult result = new StreamResult(output);
 			transformer.transform(source, result);
 
